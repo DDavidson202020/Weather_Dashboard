@@ -1,29 +1,50 @@
 $(document).ready(function() {
+    var key = localStorage.getItem("nextKey");
+    
+    function renderCity()  {
+
+        $(".city-history").empty();
+          // Loop through localStorage to get input cities and append them on the page 
+      for (let j=0; j < localStorage.length; j++) {
+          //var key = localStorage.key(j)
+          var savedCity = localStorage.getItem(j);
+          var addCity = $("<li>").text(savedCity);
+          addCity.addClass("list-group-item")
+          $(".city-history").prepend(addCity)
+      }
+  
+  } 
     //When user click on the search button
     $("#searchBtn").on("click", function() {
         // Don't refresh the page when clicked
         event.preventDefault();
+        
         // Store the value of the user input into a variable
         var city = $("#city").val();
         // Save that input to localStorage
-        localStorage.setItem(city,city);
+       
+        localStorage.setItem(key++, city);
+        var nextKey = key;
+        localStorage.setItem("nextKey",nextKey);
         // Store API key and API call links to variables
         var APIkey = "d3906bd231160a917af13b926a2b6749";
         var queryURL = "https://api.openweathermap.org/data/2.5/weather?" + "q=" + city + "&appid=" + APIkey;
         var queryURL2 = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&units=imperial&appid=" + APIkey;
         var lat;
         var lon;
+       
         // Call the method ajax on the link
         $.ajax({
             url: queryURL,
             method: "GET"
         }).then(function(response) {
             console.log(response);
+            
             var icon = response.weather[0].icon
             var urlicon= "http://openweathermap.org/img/wn/" + icon +  "@2x.png";
             var img = $("<img>")
             img.attr("src",urlicon);
-            $("#image").append(img);
+            var clearImg = $("#image").append(img);
            // lat = response.coord.lat;
            // lon = response.coord.lon;
         
@@ -62,16 +83,8 @@ $(document).ready(function() {
                 x += 8;
             }
         })
-        // Empty the history of cities searched
-        $(".city-history").empty();
-        // Loop through localStorage to get input cities and append them on the page 
-    for (let j=0; j < localStorage.length; j++) {
-        var savedCity = localStorage.getItem(localStorage.key(j));
-        var addCity = $("<li>").text(savedCity);
-        addCity.addClass("list-group-item")
-        $(".city-history").prepend(addCity)
-    }
-
+        
+    renderCity();
   });   
 
         /*var queryURLuv = "http://api.openweathermap.org/data/2.5/uvi?appid=" + APIkey + "&lat=" + lat + "&lon=" + lon;
@@ -82,8 +95,7 @@ $(document).ready(function() {
             console.log(uvresponse);
         })*/
     
-    
-    
-    
+     
+    renderCity();
     
 })
