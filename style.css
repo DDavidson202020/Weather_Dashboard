@@ -1,0 +1,35 @@
+.header {
+    height: 90px;
+    background-color: rgb(61, 58, 58);
+}
+h1 {
+    color: white;
+    font-size: 50px;
+    text-align: center;
+    padding-top: 10px;
+}
+.style-input {
+    height: 45px;
+    width: 300px;
+}
+label {
+    font-size: 30px;
+    font-weight: bold;
+}
+.card {
+    margin-right: 15px;
+}
+.city-row {
+    border: 1px solid rgb(212, 202, 202);
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+#city-name {
+    padding-top: 15px;
+}
+.card-body {
+    background-color: lightskyblue;
+}
+button {
+    margin-bottom: 3px;
+}

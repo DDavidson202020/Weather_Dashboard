@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Dashboard</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" 
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+      integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
+      crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class ="container-fluid">
+        <div class="row header">
+            <div class="col-md-12">
+               <h1>Weather Dashboard</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <div>
+                    <label>Search for a City:</label><br>
+                    <input type="text" class="style-input" id="city"><button type="button" class="btn btn-primary btn-lg" id="searchBtn"><i class="fas fa-search"></i></button>
+                    <!--Build a form to prepend the history of search-->
+                    <form class="city-history"></form>
+                </div>
+            </div>
+            <div class="col-md-9">
+                <div class="row city-row">
+                    <div class="col">
+                    <h2 id="city-name"></h2>
+                    <div id="image"></div>
+                    <p id="temp"></p>
+                    <p id="hum"></p>
+                    <p id="wind"></p>
+                    <p id="index"></p>
+                    </div>
+                </div>
+                <div class="row"><h2>5-Day Forecast:</h2></div>
+                <div class="row">
+                    <div class="card">
+                        
+                        <div class="card-body" id="day1">
+                          <h5 class="card-title1"></h5>
+                        
+                          <div class="image1"></div>
+                          <p class="temp1"></p>
+                          <p class="hum1"></p>
+                          
+                        </div>
+                      </div>
+                      <div class="card">
+                        
+                        <div class="card-body" id="day2">
+                          <h5 class="card-title2"></h5>
+                          <div class="image2"></div>
+                          <p class="temp2"></p>
+                          <p class="hum2"></p>
+                          
+                        </div>
+                      </div>
+                      <div class="card">
+                        
+                        <div class="card-body" id="day3">
+                          <h5 class="card-title3"></h5>
+                          <div class="image3"></div>
+                          <p class="temp3"></p>
+                          <p class="hum3"></p>
+                          
+                        </div>
+                      </div>
+                      <div class="card">
+                        
+                        <div class="card-body" id="day4">
+                          <h5 class="card-title4"></h5>
+                          <div class="image4"></div>
+                          <p class="temp4"></p>
+                          <p class="hum4"></p>
+                          
+                        </div>
+                      </div>
+                      <div class="card">
+                       
+                        <div class="card-body" id="day5">
+                          <h5 class="card-title5"></h5>
+                          <div class="image5"></div>
+                          <p class="temp5"></p>
+                          <p class="hum5"></p>
+                          
+                        </div>
+                      </div>
+                      
+                </div>
+
+            </div>
+
+        </div>
+    
+
+
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script
+        src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+        crossorigin="anonymous"></script>
+    <script src="script.js"></script>  
+</body>
+</html>
