@@ -21,8 +21,10 @@ $(document).ready(function() {
         
         // Store the value of the user input into a variable
         var city = $("#city").val();
+        $("#city").val("");
         // Save that input to localStorage
-       
+       if (city !== "") { 
+        $("#image").empty();
         localStorage.setItem(key++, city);
         var nextKey = key;
         localStorage.setItem("nextKey",nextKey);
@@ -44,7 +46,7 @@ $(document).ready(function() {
             var urlicon= "http://openweathermap.org/img/wn/" + icon +  "@2x.png";
             var img = $("<img>")
             img.attr("src",urlicon);
-            var clearImg = $("#image").append(img);
+            $("#image").append(img);
            // lat = response.coord.lat;
            // lon = response.coord.lon;
         
@@ -83,7 +85,7 @@ $(document).ready(function() {
                 x += 8;
             }
         })
-        
+    }   
     renderCity();
   });   
 
