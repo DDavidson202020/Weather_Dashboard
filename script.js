@@ -6,85 +6,35 @@ $(document).ready(function() {
         $(".city-history").empty();
           // Loop through localStorage to get input cities and append them on the page 
       for (let j=0; j < localStorage.length; j++) {
-          var key = localStorage.key(j)
-          console.log("The key =", key)
-          //console.log()
-          // Create filter for nextKey
-          if (key !== "nextKey") {
-            var savedCity = localStorage.getItem(j);
-        
-            var addCity = $("<li>").text(savedCity);
-            addCity.attr("data", j)
-            addCity.addClass("list-group-item")
-            $(".city-history").prepend(addCity)
-          } 
-         
+          //var key = localStorage.key(j)
+          var savedCity = localStorage.getItem(j);
+          var addCity = $("<li>").text(savedCity);
+          addCity.addClass("list-group-item")
+          $(".city-history").prepend(addCity)
       }
   
   } 
-
-  $(".city-history").on("click", function(e) {
-    console.log("Who is clicking me???");
-     //use event.target to get the element you clicked
-    console.log(e.target.tagName);
-    //check if it is an li you clicked...
-    if(e.target.tagName == "LI"){
-        // Then get the city name from the li that you clicked on.
-        console.log("you clicked on", e.target.innerText);
-        var city = e.target.innerText;
-        /*Now just call the fucntion to make the API call
-        with the city name you got from the <li> :-)*/ 
-        getWeather(city);
-
-    }
-})
-
     //When user click on the search button
     $("#searchBtn").on("click", function() {
-        event.preventDefault();
-        var city = $("#city").val();
-        console.log("city in search", city)
-        // if there is no value in the input box 
-        if (city == "") {
-            // Do nothing
-            return;
-        // If there is value, call 2 functions and empty out the value of the input box
-        } else {
-            getWeather(city);
-            renderCity(city);
-            $("#city").val("");
-        }
-    });
         // Don't refresh the page when clicked
-        //event.preventDefault();
-    function getWeather(para)  {  
+        event.preventDefault();
+        
         // Store the value of the user input into a variable
-        console.log(para)
+        var city = $("#city").val();
+        $("#city").val("");
         // Save that input to localStorage
        if (city !== "") { 
         $("#image").empty();
-        
-        // Set an item with the next key
-            localStorage.setItem(key++, para);
-            // Making the next key
-            var nextKey = key;
-            console.log("city to be saved", nextKey)
-            // 
-            localStorage.setItem("nextKey",nextKey);
-        
-        
-       
+        localStorage.setItem(key++, city);
+        var nextKey = key;
+        localStorage.setItem("nextKey",nextKey);
         // Store API key and API call links to variables
         var APIkey = "d3906bd231160a917af13b926a2b6749";
-        var queryURL = "https://api.openweathermap.org/data/2.5/weather?" + "q=" + para + "&appid=" + APIkey;
-        var queryURL2 = "https://api.openweathermap.org/data/2.5/forecast?q=" + para + "&units=imperial&appid=" + APIkey;
+        var queryURL = "https://api.openweathermap.org/data/2.5/weather?" + "q=" + city + "&appid=" + APIkey;
+        var queryURL2 = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&units=imperial&appid=" + APIkey;
         var lat;
         var lon;
-        
-       }
-
        
-     
         // Call the method ajax on the link
         $.ajax({
             url: queryURL,
@@ -135,10 +85,9 @@ $(document).ready(function() {
                 x += 8;
             }
         })
-      
+    }   
     renderCity();
-}
-  
+  });   
 
         /*var queryURLuv = "http://api.openweathermap.org/data/2.5/uvi?appid=" + APIkey + "&lat=" + lat + "&lon=" + lon;
         $.ajax({
